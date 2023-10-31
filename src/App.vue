@@ -7,7 +7,12 @@
   <FormBindings/>
   <ConditionalRendering/>
   <ListRendering/>
-
+  <LifecycleAndTemplateRef/>
+  <WatcherInit/>
+  <PropsInit msg="greeting"/>
+  <EmitsInit @responseEmit="responseEmit"/>
+  <h2>{{ msg }}</h2>
+  <SlotInit><h3>masssge from parent : {{ msg }}</h3></SlotInit>
 </template>
 
 <script>
@@ -18,7 +23,14 @@ import EventListener from './components/EventListener.vue';
 import FormBindings from './components/FormBindings.vue';
 import ConditionalRendering from './components/ConditionalRendering.vue';
 import ListRendering from './components/ListRendering.vue';
+import LifecycleAndTemplateRef from './components/LifecycleAndTemplateRef.vue';
+import WatcherInit from './components/WatcherInit.vue';
+import PropsInit from './components/PropsInit.vue';
+import EmitsInit from './components/EmitsInit.vue';
+import SlotInit from './components/SlotInit.vue';
+import { ref } from 'vue';
 export default {
+
   name: 'App',
   components: {
     // HelloWorld
@@ -27,8 +39,24 @@ export default {
     EventListener,
     FormBindings,
     ConditionalRendering,
-    ListRendering
+    ListRendering,
+    LifecycleAndTemplateRef,
+    WatcherInit,
+    PropsInit,
+    EmitsInit,
+    SlotInit
+  },
+  setup(){
+    const msg = ref('Waiting Emit..!');
+    const responseEmit = (newMsg) =>{
+      msg.value = newMsg
+    }
+    return {
+      msg, 
+      responseEmit
+    }
   }
+ 
 }
 </script>
 
